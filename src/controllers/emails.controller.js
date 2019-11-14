@@ -27,22 +27,24 @@ emailsCtrl.enviarEmail = async (req, res) =>{
         //     rejectUnauthorized: false
         // }
     });
+    
+    try{
 
-    try {
         const info = await trasnporter.sendMail({
             from: "diegomolina1983@gmail.com",
             to: 'diegomolina1983@gmail.com',
             subject: 'Formulario de contacto',
             html: contentHTML
         });
-    
+
         console.log('Mensaje enviado',info);
-    
+
         res.json({message:"Email recibido"});
-    } catch (error) {
-        console.log('Mensaje de error',error);
-    
-        res.json({error:error});   
+
+    }
+    catch(error){
+       console.log(error);
+       res.json({error: error});
     }
 } 
 
