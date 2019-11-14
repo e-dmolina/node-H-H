@@ -27,6 +27,8 @@ emailsCtrl.enviarEmail = async (req, res) =>{
         //     rejectUnauthorized: false
         // }
     });
+    
+    try{
 
     const info = await trasnporter.sendMail({
         from: "diegomolina1983@gmail.com",
@@ -38,6 +40,12 @@ emailsCtrl.enviarEmail = async (req, res) =>{
     console.log('Mensaje enviado',info);
 
     res.json({message:"Email recibido"});
+
+    }
+    catch(error){
+       console.log(error);
+       res.json({error: error});
+    }
 } 
 
 module.exports = emailsCtrl;

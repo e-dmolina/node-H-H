@@ -1,4 +1,4 @@
-FROM node:10
+FROM node:latest
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -15,5 +15,4 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-EXPOSE 80
-CMD [ "node", "server.js" ]
+CMD [ "node", "src/index.js" ]
