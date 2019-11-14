@@ -28,16 +28,22 @@ emailsCtrl.enviarEmail = async (req, res) =>{
         // }
     });
 
-    const info = await trasnporter.sendMail({
-        from: "diegomolina1983@gmail.com",
-        to: 'diegomolina1983@gmail.com',
-        subject: 'Formulario de contacto',
-        html: contentHTML
-    });
-
-    console.log('Mensaje enviado',info);
-
-    res.json({message:"Email recibido"});
+    try {
+        const info = await trasnporter.sendMail({
+            from: "diegomolina1983@gmail.com",
+            to: 'diegomolina1983@gmail.com',
+            subject: 'Formulario de contacto',
+            html: contentHTML
+        });
+    
+        console.log('Mensaje enviado',info);
+    
+        res.json({message:"Email recibido"});
+    } catch (error) {
+        console.log('Mensaje de error',error);
+    
+        res.json({error:error});   
+    }
 } 
 
 module.exports = emailsCtrl;
